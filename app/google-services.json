@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "537477088328",
+    "project_id": "fixflow-a0a86",
+    "storage_bucket": "fixflow-a0a86.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537477088328:android:cda31d340509761857447d",
+        "android_client_info": {
+          "package_name": "com.example.fixflow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxhd2XLZHi91yK2WQrurzhB7CjGejMphU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
