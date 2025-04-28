@@ -12,6 +12,7 @@ class ReceptionistActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReceptionistBinding
     private val viewModel: ReceptionistViewModel by viewModels()
+    private lateinit var adapter: RequestsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,19 +21,23 @@ class ReceptionistActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val userNameFromLogin = intent.getStringExtra("username") ?: "User"
-        viewModel.userName.value = userNameFromLogin
-
         setupRecyclerView()
+        observeRequests()
 
         binding.addRequestButton.setOnClickListener {
-            // فتح صفحة إضافة طلب جديد
+            viewModel.addDummyRequest()
         }
     }
 
     private fun setupRecyclerView() {
-        val adapter = RepairsAdapter(viewModel.repairs.value ?: listOf())
-        binding.repairsRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.repairsRecyclerView.adapter = adapter
+        adapter = RequestsAdapter()
+        binding.requestsRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.requestsRecyclerView.adapter = adapter
+    }
+
+    private fun observeRequests() {
+        viewModel.requests.observe(this) { list ->
+            adapter.submitList(list.toList())
+        }
     }
 }
