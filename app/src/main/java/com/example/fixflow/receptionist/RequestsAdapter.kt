@@ -4,35 +4,34 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fixflow.databinding.ItemRequestBinding
+import com.example.fixflow.models.Request
 
-class RequestsAdapter : RecyclerView.Adapter<RequestsAdapter.RequestViewHolder>() {
+class RequestsAdapter(
+    private val onDeleteClick: (String) -> Unit
+) : RecyclerView.Adapter<RequestsAdapter.RequestViewHolder>() {
 
-    private var requests = listOf<String>()
+    private var requests: List<Request> = listOf()
 
-    fun submitList(list: List<String>) {
-        requests = list
-        notifyDataSetChanged()
-    }
-
-    class RequestViewHolder(private val binding: ItemRequestBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(request: String) {
-            binding.requestText.text = request
-        }
-    }
+    inner class RequestViewHolder(val binding: ItemRequestBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestViewHolder {
-        val binding = ItemRequestBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding = ItemRequestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RequestViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
-        holder.bind(requests[position])
+        val request = requests[position]
+        holder.binding.request = request
+        holder.binding.deleteButton.setOnClickListener {
+            onDeleteClick(request.id)
+        }
     }
 
     override fun getItemCount() = requests.size
+
+    fun submitList(list: List<Request>) {
+        requests = list
+        notifyDataSetChanged()
+    }
 }

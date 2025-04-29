@@ -41,6 +41,8 @@
         <activity android:name=".hardware.HardwareActivity"
             android:exported="true"
             />
+        <activity android:name=".addrequest.AddRequestActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -1,24 +1,29 @@
 package com.example.fixflow.receptionist
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fixflow.models.Request
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ReceptionistViewModel : ViewModel() {
 
-    private val _requests = MutableLiveData<List<String>>(emptyList())
-    val requests: LiveData<List<String>> = _requests
-
-    private val _userName = MutableLiveData("User") // هيجي من Firebase بعدين
-    val userName: LiveData<String> = _userName
+    val requests = MutableLiveData<List<Request>>()
+    private val db = FirebaseFirestore.getInstance()
 
     fun loadRequests() {
-        _requests.value = listOf("Request 1", "Request 2", "Request 3")
+        db.collection("requests")
+            .get()
+            .addOnSuccessListener { result ->
+                val list = result.map { it.toObject(Request::class.java) }
+                requests.value = list
+            }
     }
 
-    fun addDummyRequest() {
-        val updatedList = _requests.value?.toMutableList() ?: mutableListOf()
-        updatedList.add("New Request ${(updatedList.size) + 1}")
-        _requests.value = updatedList
+    fun deleteRequest(id: String) {
+        db.collection("requests").document(id)
+            .delete()
+            .addOnSuccessListener {
+                loadRequests()
+            }
     }
 }
