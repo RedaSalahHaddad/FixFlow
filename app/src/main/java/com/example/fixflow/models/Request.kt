@@ -5,5 +5,7 @@ data class Request(
     var clientName: String = "",
     var deviceType: String = "",
     var problemDescription: String = "",
-    var problemType: String = ""
+    var problemType: String = "",
+    val status: String = "Pending",
+
 )

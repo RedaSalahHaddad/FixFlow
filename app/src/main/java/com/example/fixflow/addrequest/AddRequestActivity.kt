@@ -21,6 +21,7 @@ class AddRequestActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+
         // Dropdown setup
         val problemTypes = listOf("Software", "Hardware")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, problemTypes)

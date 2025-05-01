@@ -1,34 +1,36 @@
-package com.example.fixflow.receptionist
+package com.example.fixflow.hardware
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fixflow.databinding.ReceptionistItemRequestBinding
+import com.example.fixflow.databinding.TechnicianItemRequestBinding
 import com.example.fixflow.models.Request
 
-class RequestsAdapter(
-    private val onDeleteClick: (String) -> Unit
-) : RecyclerView.Adapter<RequestsAdapter.RequestViewHolder>() {
+class HardwareRequestsAdapter(
+    private val onMarkUnderMaintenance: (String) -> Unit,
+    private val onMarkDone: (String) -> Unit
+) : RecyclerView.Adapter<HardwareRequestsAdapter.RequestViewHolder>() {
 
     private var requests: List<Request> = listOf()
 
-    inner class RequestViewHolder(val binding: ReceptionistItemRequestBinding) :
+    inner class RequestViewHolder(val binding: TechnicianItemRequestBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestViewHolder {
-        val binding = ReceptionistItemRequestBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding = TechnicianItemRequestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RequestViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
         val request = requests[position]
         holder.binding.request = request
-        holder.binding.deleteButton.setOnClickListener {
-            onDeleteClick(request.id)
+
+        holder.binding.underMaintenanceButton.setOnClickListener {
+            onMarkUnderMaintenance(request.id)
+        }
+
+        holder.binding.doneButton.setOnClickListener {
+            onMarkDone(request.id)
         }
     }
 

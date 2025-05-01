@@ -132,7 +132,7 @@
                 android:text="Login"
                 android:textSize="20sp"
                 android:layout_gravity="center"
-                android:textColor="@color/black" />
+                android:textColor="#CBEAD8" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">FixFlow</string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_splash">FixFlow</string>
 </resources>
