@@ -1,5 +1,6 @@
 package com.example.fixflow.receptionist
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -10,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fixflow.R
 import com.example.fixflow.addrequest.AddRequestActivity
 import com.example.fixflow.databinding.ActivityReceptionistBinding
+import com.example.fixflow.login.LoginActivity
+import com.example.fixflow.models.Request
+import com.example.fixflow.receptionist.done.DoneRequestsActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class ReceptionistActivity : AppCompatActivity() {
@@ -17,6 +21,7 @@ class ReceptionistActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReceptionistBinding
     private val viewModel: ReceptionistViewModel by viewModels()
     private lateinit var adapter: RequestsAdapter
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +38,30 @@ class ReceptionistActivity : AppCompatActivity() {
         binding.requestsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.requestsRecyclerView.adapter = adapter
 
-        // Load Requests
         viewModel.requests.observe(this) { list ->
             adapter.submitList(list)
         }
 
-        viewModel.loadRequests()
-
-        // Navigate to Add Request
         binding.addRequestButton.setOnClickListener {
             startActivity(Intent(this, AddRequestActivity::class.java))
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadRequests() // Refresh after returning from AddRequest
+        binding.finishButton.setOnClickListener {
+            startActivity(Intent(this, DoneRequestsActivity::class.java))
+        }
+
+        binding.logoutButton.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Yes") { _, _ ->
+                    firebaseAuth.signOut()
+                    Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
     }
 }

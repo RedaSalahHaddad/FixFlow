@@ -43,6 +43,8 @@
             />
         <activity android:name=".addrequest.AddRequestActivity"
             android:exported="true"/>
+        <activity android:name=".receptionist.done.DoneRequestsActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

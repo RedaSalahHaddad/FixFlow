@@ -1,4 +1,5 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -10,12 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:gravity="end"
+        >
 
+        <!-- زرار يظهر AlertDialog عند الضغط عليه -->
+        <Button
+            android:id="@+id/showAlertDialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="logout"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_register"
+            app:backgroundTint="@null"
+            />
+
+        <!-- RecyclerView لعرض الطلبات -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/hardwareRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:padding="16dp" />
 
     </LinearLayout>
 </layout>

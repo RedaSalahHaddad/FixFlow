@@ -7,21 +7,44 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginViewModel : ViewModel() {
 
+    // LiveData للإيميل والباسورد ورسايل الخطأ
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
+    val emailError = MutableLiveData<String?>()
+    val passwordError = MutableLiveData<String?>()
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
     fun login(callback: (success: Boolean, role: String?, errorMessage: String?) -> Unit) {
-        val userEmail = email.value ?: ""
-        val userPassword = password.value ?: ""
+        // إعادة تعيين رسايل الخطأ
+        emailError.value = null
+        passwordError.value = null
 
-        if (userEmail.isBlank() || userPassword.isBlank()) {
-            callback(false, null, "Please fill in all fields")
-            return
+        val userEmail = email.value?.trim() ?: ""
+        val userPassword = password.value?.trim() ?: ""
+
+        // التحقق من الحقول
+        var hasError = false
+
+        if (userEmail.isBlank()) {
+            emailError.value = "Enter Email"
+            hasError = true
         }
 
+        if (userPassword.isBlank()) {
+            passwordError.value = "Enter Password"
+            hasError = true
+        } else if (userPassword.length < 8) {
+            passwordError.value = "Password must be at least 8 characters"
+            hasError = true
+        }
+
+        if (hasError) {
+            return // لو فيه أي خطأ، ما نكملش
+        }
+
+        // تسجيل الدخول باستخدام Firebase
         auth.signInWithEmailAndPassword(userEmail, userPassword)
             .addOnSuccessListener { authResult ->
                 val uid = authResult.user?.uid ?: return@addOnSuccessListener
@@ -43,3 +66,4 @@ class LoginViewModel : ViewModel() {
             }
     }
 }
+

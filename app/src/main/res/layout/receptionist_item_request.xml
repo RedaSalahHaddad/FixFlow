@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -12,39 +13,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:background="#EEEEEE"
+        android:background="#EAE6FA"
         android:layout_margin="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{request.clientName}" />
+            android:text="@{request.clientName}"
+            android:textSize="15sp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{request.deviceType}" />
+            android:text="@{request.deviceType}"
+            android:textSize="15sp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{request.problemDescription}" />
+            android:text="@{request.problemDescription}"
+            android:textSize="15sp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{request.problemType}" />
+            android:text="@{request.problemType}"
+            android:textSize="15sp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"Status: " + request.status}' />
+            android:text='@{"Status: " + request.status}'
+            android:textSize="15sp"
+            />
 
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete"
-            android:layout_marginTop="8dp"/>
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_login"
+            app:backgroundTint="@null"
+            />
     </LinearLayout>
 </layout>

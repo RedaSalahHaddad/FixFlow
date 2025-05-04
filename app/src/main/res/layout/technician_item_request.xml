@@ -1,5 +1,6 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="request"
@@ -7,45 +8,69 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:background="#F5F5F5"
-        android:layout_margin="8dp">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#f0f0f0"
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"Client: " + request.clientName}' />
+            android:text='@{"Client Name: " + request.clientName}'
+            tools:text="Client Name:"
+            android:textSize="20sp"
+             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"Device: " + request.deviceType}' />
-
+            android:text='@{"Device Type: " + request.deviceType}'
+            tools:text="Device Type:"
+            android:textSize="20sp"
+            android:layout_marginTop="4dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"Description: " + request.problemDescription}' />
+            android:text='@{"Problem: " + request.problemDescription}'
+            tools:text="Problem description:"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="4dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text='@{"Status: " + request.status}' />
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:weightSum="2">
 
-        <Button
-            android:id="@+id/underMaintenanceButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Under Maintenance"
-            android:layout_marginTop="6dp"/>
+            <Button
+                android:id="@+id/underMaintenanceButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Under Maintenance"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/button_login"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/doneButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Done"
-            android:layout_marginTop="6dp"/>
+            <Button
+                android:id="@+id/doneButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Done"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/button_login"
+                app:backgroundTint="@null"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
     </LinearLayout>
 </layout>

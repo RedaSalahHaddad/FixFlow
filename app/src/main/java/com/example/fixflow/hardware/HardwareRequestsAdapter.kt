@@ -11,7 +11,7 @@ class HardwareRequestsAdapter(
     private val onMarkDone: (String) -> Unit
 ) : RecyclerView.Adapter<HardwareRequestsAdapter.RequestViewHolder>() {
 
-    private var requests: List<Request> = listOf()
+    private var currentRequest: Request? = null
 
     inner class RequestViewHolder(val binding: TechnicianItemRequestBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -22,22 +22,21 @@ class HardwareRequestsAdapter(
     }
 
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
-        val request = requests[position]
-        holder.binding.request = request
-
-        holder.binding.underMaintenanceButton.setOnClickListener {
-            onMarkUnderMaintenance(request.id)
-        }
-
-        holder.binding.doneButton.setOnClickListener {
-            onMarkDone(request.id)
+        currentRequest?.let { request ->
+            holder.binding.request = request
+            holder.binding.underMaintenanceButton.setOnClickListener {
+                onMarkUnderMaintenance(request.id)
+            }
+            holder.binding.doneButton.setOnClickListener {
+                onMarkDone(request.id)
+            }
         }
     }
 
-    override fun getItemCount() = requests.size
+    override fun getItemCount() = if (currentRequest != null) 1 else 0
 
-    fun submitList(list: List<Request>) {
-        requests = list
+    fun submitSingleRequest(request: Request?) {
+        currentRequest = request
         notifyDataSetChanged()
     }
 }
