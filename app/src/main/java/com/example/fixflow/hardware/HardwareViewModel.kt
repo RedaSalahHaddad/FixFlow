@@ -35,7 +35,7 @@ class HardwareViewModel : ViewModel() {
         db.collection("requests").document(id)
             .update("status", newStatus)
             .addOnSuccessListener {
-                // بعد التحديث نعمل reload للطلب الجديد
+
                 loadHardwareRequests()
             }
     }

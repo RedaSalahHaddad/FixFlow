@@ -2,8 +2,8 @@ package com.example.fixflow.models
 
 
 data class Message(
-    val id: String = "",             // ID فريد للرسالة (Firestore Document ID)
-    val senderId: String = "",       // ID المرسل (User ID من FirebaseAuth)
+    val id: String = "",
+    val senderId: String = "",
     val senderName: String = "",
     val content: String = "",
     val timestamp: Long = System.currentTimeMillis()

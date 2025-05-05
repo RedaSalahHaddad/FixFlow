@@ -43,7 +43,7 @@ class HardwareActivity : AppCompatActivity() {
 
         viewModel.loadHardwareRequests()
 
-        // إضافة زر الـ Logout
+
         val logoutIcon: ImageButton = binding.root.findViewById(R.id.logoutIcon)
         logoutIcon.setOnClickListener {
             showAlertDialog()

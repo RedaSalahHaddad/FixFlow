@@ -6,6 +6,6 @@ data class Request(
     val deviceType: String = "",
     val problemDescription: String = "",
     val problemType: String = "",
-    val status: String = "Pending", // Default status is "Pending"
-    val createdAt: Long = System.currentTimeMillis() // Time of request creation
+    val status: String = "Pending",
+    val createdAt: Long = System.currentTimeMillis()
 )

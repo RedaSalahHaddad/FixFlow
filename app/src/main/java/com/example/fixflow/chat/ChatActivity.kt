@@ -32,36 +32,36 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        // تهيئة Firestore
+
         db = FirebaseFirestore.getInstance()
 
-        // تهيئة واجهة المستخدم
+
         messagesRecyclerView = findViewById(R.id.messagesRecyclerView)
         messageEditText = findViewById(R.id.messageEditText)
         sendButton = findViewById(R.id.sendButton)
 
-        // إعداد RecyclerView
+
         chatAdapter = ChatAdapter()
         messagesRecyclerView.layoutManager = LinearLayoutManager(this)
         messagesRecyclerView.adapter = chatAdapter
 
-        // فرضياً: يمكن أن نقوم بإنشاء معرف فريد للمحادثة
-        chatId = "some_chat_id" // هذا يجب أن يكون فريد
 
-        // تهيئة FirebaseAuth لجلب بيانات المستخدم الحالي
+        chatId = "some_chat_id"
+
+
         val currentUser = FirebaseAuth.getInstance().currentUser
         currentUserId = currentUser?.uid ?: "unknown"
         currentUserName = currentUser?.email ?: "Unknown User"
 
-        // الاستماع للرسائل الجديدة
+
         listenForMessages()
 
-        // إرسال الرسالة عند الضغط على الزر
+
         sendButton.setOnClickListener {
             val messageText = messageEditText.text.toString()
             if (messageText.isNotBlank()) {
                 sendMessage(currentUserId, currentUserName, messageText, chatId)
-                messageEditText.text.clear() // مسح النص بعد الإرسال
+                messageEditText.text.clear()
             } else {
                 Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
             }
@@ -71,16 +71,16 @@ class ChatActivity : AppCompatActivity() {
     // إرسال الرسالة إلى Firestore
     private fun sendMessage(senderId: String, senderName: String, content: String, chatId: String) {
         val message = Message(
-            id = UUID.randomUUID().toString(), // ID فريد للرسالة
+            id = UUID.randomUUID().toString(),
             senderId = senderId,
             senderName = senderName,
             content = content,
             timestamp = System.currentTimeMillis()
         )
 
-        // إضافة الرسالة إلى Firestore
+
         db.collection("chats").document(chatId).collection("messages")
-            .document(message.id)  // نستخدم ID فريد
+            .document(message.id)
             .set(message)
             .addOnSuccessListener {
                 Log.d("Chat", "Message sent successfully!")
@@ -90,7 +90,7 @@ class ChatActivity : AppCompatActivity() {
             }
     }
 
-    // الاستماع للرسائل
+
     private fun listenForMessages() {
         val messagesRef = db.collection("chats").document(chatId).collection("messages")
         messagesRef.orderBy("timestamp", Query.Direction.ASCENDING)
@@ -106,7 +106,7 @@ class ChatActivity : AppCompatActivity() {
                     messages.add(message)
                 }
 
-                // تحديث المحول لعرض الرسائل
+
                 chatAdapter.submitList(messages)
             }
     }

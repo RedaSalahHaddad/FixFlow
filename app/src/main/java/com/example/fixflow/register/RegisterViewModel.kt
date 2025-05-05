@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
-    // LiveData للحقول ورسايل الخطأ
+
     val firstName = MutableLiveData("")
     val lastName = MutableLiveData("")
     val email = MutableLiveData("")
@@ -23,7 +23,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     var selectedRole: String = ""
 
     fun onRegisterClick(callback: (success: Boolean, role: String?, errorMessage: String?) -> Unit) {
-        // إعادة تعيين رسايل الخطأ
+
         firstNameError.value = null
         lastNameError.value = null
         emailError.value = null
@@ -35,7 +35,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         val emailVal = email.value?.trim() ?: ""
         val passwordVal = password.value?.trim() ?: ""
 
-        // التحقق من الحقول
+
         var hasError = false
 
         if (first.isBlank()) {
@@ -67,13 +67,13 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
 
         if (hasError) {
-            return // لو فيه أي خطأ، ما نكملش
+            return
         }
 
         val auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
 
-        // إنشاء حساب في Firebase
+
         auth.createUserWithEmailAndPassword(emailVal, passwordVal).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val user = AppUser(first, last, emailVal, selectedRole)

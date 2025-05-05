@@ -35,7 +35,7 @@ class SoftwareViewModel : ViewModel() {
         db.collection("requests").document(id)
             .update("status", newStatus)
             .addOnSuccessListener {
-                // إعادة تحميل الطلب بعد التحديث
+
                 loadSoftwareRequests()
             }
     }

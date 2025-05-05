@@ -25,12 +25,12 @@ class HardwareRequestsAdapter(
         currentRequest?.let { request ->
             holder.binding.request = request
 
-            // عند الضغط على Under Maintenance، لا يحدث شيء
+
             holder.binding.underMaintenanceButton.setOnClickListener {
-                // لا يحدث شيء هنا
+
             }
 
-            // عند الضغط على Done، يتم تغيير الحالة
+
             holder.binding.doneButton.setOnClickListener {
                 onMarkDone(request.id)
             }

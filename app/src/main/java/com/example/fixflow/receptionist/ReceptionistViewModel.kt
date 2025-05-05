@@ -21,7 +21,7 @@ class ReceptionistViewModel : ViewModel() {
             .addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     val list = snapshot.mapNotNull { it.toObject(Request::class.java) }
-                        .filter { it.status != "Done" } // حذف الطلبات اللي حالتها Done
+                        .filter { it.status != "Done" }
                         .sortedBy { it.createdAt }
                     requests.value = list
                 }

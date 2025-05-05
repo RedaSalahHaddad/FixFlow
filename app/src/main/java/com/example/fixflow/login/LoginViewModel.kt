@@ -17,14 +17,14 @@ class LoginViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
 
     fun login(callback: (success: Boolean, role: String?, errorMessage: String?) -> Unit) {
-        // إعادة تعيين رسايل الخطأ
+
         emailError.value = null
         passwordError.value = null
 
         val userEmail = email.value?.trim() ?: ""
         val userPassword = password.value?.trim() ?: ""
 
-        // التحقق من الحقول
+
         var hasError = false
 
         if (userEmail.isBlank()) {
@@ -41,10 +41,10 @@ class LoginViewModel : ViewModel() {
         }
 
         if (hasError) {
-            return // لو فيه أي خطأ، ما نكملش
+            return
         }
 
-        // تسجيل الدخول باستخدام Firebase
+
         auth.signInWithEmailAndPassword(userEmail, userPassword)
             .addOnSuccessListener { authResult ->
                 val uid = authResult.user?.uid ?: return@addOnSuccessListener

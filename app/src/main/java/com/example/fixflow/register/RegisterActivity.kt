@@ -25,7 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        // اختيار الدور
+
         binding.roleGroup.setOnCheckedChangeListener { _, checkedId ->
             viewModel.selectedRole = when (checkedId) {
                 R.id.roleReceptionist -> "receptionist"
@@ -57,7 +57,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        // زر إنشاء الحساب
+
         binding.createAccount.setOnClickListener {
             viewModel.onRegisterClick { success, role, errorMessage ->
                 if (success) {
@@ -81,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        // رابط للـ Login
+
         binding.goToLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
