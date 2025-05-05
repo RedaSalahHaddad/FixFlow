@@ -11,27 +11,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="end"
-        >
+        android:padding="16dp">
 
-        <!-- زرار يظهر AlertDialog عند الضغط عليه -->
-        <Button
-            android:id="@+id/showAlertDialogButton"
-            android:layout_width="wrap_content"
+        <!-- العنوان و أيقونة اللوج أوت في نفس السطر -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="logout"
-            android:textColor="@color/black"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/button_register"
-            app:backgroundTint="@null"
-            />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="15dp"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Hardware Requests"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/logoutIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logout"/>
+        </LinearLayout>
 
         <!-- RecyclerView لعرض الطلبات -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/hardwareRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp" />
+            android:layout_gravity="center"
+            android:clipToPadding="false"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:overScrollMode="never" />
 
     </LinearLayout>
 </layout>

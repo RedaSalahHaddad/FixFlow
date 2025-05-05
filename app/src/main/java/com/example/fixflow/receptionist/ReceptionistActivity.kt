@@ -12,7 +12,6 @@ import com.example.fixflow.R
 import com.example.fixflow.addrequest.AddRequestActivity
 import com.example.fixflow.databinding.ActivityReceptionistBinding
 import com.example.fixflow.login.LoginActivity
-import com.example.fixflow.models.Request
 import com.example.fixflow.receptionist.done.DoneRequestsActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -50,7 +49,7 @@ class ReceptionistActivity : AppCompatActivity() {
             startActivity(Intent(this, DoneRequestsActivity::class.java))
         }
 
-        binding.logoutButton.setOnClickListener {
+        binding.logoutIcon.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Logout")
                 .setMessage("Are you sure you want to logout?")

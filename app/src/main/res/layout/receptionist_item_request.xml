@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -19,36 +20,46 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{request.clientName}"
-            android:textSize="15sp"
+            android:text='@{"Client Name:"+request.clientName}'
+            tools:text="ClientName:"
+            android:textSize="18sp"
+            android:layout_marginTop="3dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{request.deviceType}"
-            android:textSize="15sp"
+            android:text='@{"Device Type: "+request.deviceType}'
+            tools:text="Device Type"
+            android:textSize="18sp"
+            android:layout_marginTop="3dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{request.problemDescription}"
-            android:textSize="15sp"
+            android:text='@{"Problem: "+request.problemDescription}'
+            android:textSize="18sp"
+            tools:text="Problem "
+            android:layout_marginTop="3dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{request.problemType}"
-            android:textSize="15sp"
+            android:text='@{"Problem Type: "+request.problemType}'
+            tools:text="Problem Type"
+            android:textSize="18sp"
+            android:layout_marginTop="3dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"Status: " + request.status}'
-            android:textSize="15sp"
+            android:text="@{ request.status}"
+            tools:text="Status: "
+            android:textSize="18sp"
+            android:layout_marginTop="3dp"
             />
 
         <Button

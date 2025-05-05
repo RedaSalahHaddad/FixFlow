@@ -2,12 +2,13 @@ package com.example.fixflow.hardware
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.app.AlertDialog
-import android.widget.Button
+import android.widget.ImageButton
 import com.example.fixflow.R
 import com.example.fixflow.databinding.ActivityHardwareBinding
 import com.example.fixflow.login.LoginActivity
@@ -40,8 +41,9 @@ class HardwareActivity : AppCompatActivity() {
 
         viewModel.loadHardwareRequests()
 
-        val showAlertDialogButton: Button = binding.root.findViewById(R.id.showAlertDialogButton)
-        showAlertDialogButton.setOnClickListener {
+        // إضافة زر الـ Logout
+        val logoutIcon: ImageButton = binding.root.findViewById(R.id.logoutIcon)
+        logoutIcon.setOnClickListener {
             showAlertDialog()
         }
     }
@@ -68,3 +70,5 @@ class HardwareActivity : AppCompatActivity() {
         viewModel.loadHardwareRequests()
     }
 }
+
+

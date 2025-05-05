@@ -12,17 +12,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:gravity="start">
 
-        <TextView
-            android:id="@+id/welcomeText"
-            android:layout_width="wrap_content"
+        <!-- شريط العنوان + أيقونة تسجيل الخروج -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Requests"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_gravity="start"
-            android:layout_marginBottom="12dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:id="@+id/welcomeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Requests"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/logoutIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_logout"
+                android:contentDescription="Logout"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/requestsRecyclerView"
@@ -52,19 +71,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginStart="10dp"
                 android:text="Finish"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/black"
-                android:background="@drawable/button_register"
-                app:backgroundTint="@null" />
-
-            <Button
-                android:id="@+id/logoutButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:text="Logout"
                 android:textColor="@color/black"
                 android:background="@drawable/button_register"
                 app:backgroundTint="@null" />
