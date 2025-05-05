@@ -3,11 +3,13 @@ package com.example.fixflow.receptionist
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fixflow.ChatActivity
 import com.example.fixflow.R
 import com.example.fixflow.addrequest.AddRequestActivity
 import com.example.fixflow.databinding.ActivityReceptionistBinding
@@ -48,6 +50,12 @@ class ReceptionistActivity : AppCompatActivity() {
         binding.finishButton.setOnClickListener {
             startActivity(Intent(this, DoneRequestsActivity::class.java))
         }
+        val chatButton = findViewById<Button>(R.id.openChatButton)
+        chatButton.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+        }
+
 
         binding.logoutIcon.setOnClickListener {
             AlertDialog.Builder(this)

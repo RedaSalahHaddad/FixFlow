@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.app.AlertDialog
+import android.widget.Button
 import android.widget.ImageButton
+import com.example.fixflow.ChatActivity
 import com.example.fixflow.R
 import com.example.fixflow.databinding.ActivityHardwareBinding
 import com.example.fixflow.login.LoginActivity
@@ -46,6 +48,13 @@ class HardwareActivity : AppCompatActivity() {
         logoutIcon.setOnClickListener {
             showAlertDialog()
         }
+
+        val chatButton = findViewById<Button>(R.id.openChatButton)
+        chatButton.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun showAlertDialog() {

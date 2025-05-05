@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,24 +25,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.example.fixflow.login.LoginActivity"
-            android:exported="true"
-            />
-        <activity android:name=".register.RegisterActivity"
-            android:exported="true"/>
-        <activity android:name=".receptionist.ReceptionistActivity"
-            android:exported="true"
-            />
-        <activity android:name=".software.SoftwareActivity"
-            android:exported="true"
-            />
-        <activity android:name=".hardware.HardwareActivity"
-            android:exported="true"
-            />
-        <activity android:name=".addrequest.AddRequestActivity"
-            android:exported="true"/>
-        <activity android:name=".receptionist.done.DoneRequestsActivity"
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".register.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".receptionist.ReceptionistActivity"
+            android:exported="true" />
+        <activity
+            android:name=".software.SoftwareActivity"
+            android:exported="true" />
+        <activity
+            android:name=".hardware.HardwareActivity"
+            android:exported="true" />
+        <activity
+            android:name=".addrequest.AddRequestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".receptionist.done.DoneRequestsActivity"
+            android:exported="true" />
+        <activity android:name=".ChatActivity"
             android:exported="true"/>
     </application>
 
